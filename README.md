@@ -1,10 +1,10 @@
-# CyFrogBot is a fork of Honk Tip Bot, hopefully these updates made to this bot will benefit Honk as well as CyFrog plus other SLP tokens to come
+# TRENKbot is a fork of Honk Tip Bot, hopefully these updates made to this bot will benefit Honk as well as CyFrog plus other SLP tokens to come
 
 ## About
 
 This is a telegram bot that allow you tip other users in telegram with a [CyFrog] (https://cyfrog.cash) Token. 
-Add [@CyFrogBot](https://t.me/CyFrogBotbot) to your group.
-Then make your tip to other user by replying on their messages with "[NUMBER] honk" (e.g. "10 cyfrog").
+Add [@TrenkgBot](https://t.me/TrenkBot) to your group.
+Then make your tip to other user by replying on their messages with "[NUMBER] Trenk" (e.g. "10 Trenk").
 
 Users can deposit and withdraw their tokens using Badger Wallet only atm.
 You could also setup notification for new deposits with separate service [checkDeposits](https://github.com/dreamtrove/checkDeposits) a fork of (https://github.com/KeithPatrick5/checkDeposits).
