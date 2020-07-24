@@ -4,19 +4,25 @@ const session = require("telegraf/session");
 const { textHandler } = require("./src/handlers/textHandler");
 const { commandHandler } = require("./src/handlers/commandHandler");
 const commandParts = require("telegraf-command-parts");
-const { notification } = require("./src/notification");
-const rateLimit = require("telegraf-ratelimit");
+//(line that content notification) const { notification } = require("./src/notification");
+const rateLimit = require("./src/utils/ratelimit/ratelimit");
+const MemoryStore = require("./src/utils/ratelimit/memory-store");
+const { isBanned } = require("./src/utils/isBanned");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const limitConfig = {
-    window: 3000,
-    limit: 1,
-    onLimitExceeded: (ctx, next) => {
-      console.log(`limit exceed for user: ${ctx.from.id}`);
-    }
-  };
-bot.use(rateLimit(limitConfig))
+  window: 3000,
+  limit: 1,
+  onLimitExceeded: (ctx, next) => {}
+};
+
+bot.use(async (ctx, next) => {
+  if (isBanned(ctx.from.id)) return;
+  await next();
+});
+
+bot.use(rateLimit(limitConfig));
 bot.use(session());
 bot.use(commandParts());
 bot.context.db = { lockedUsers: [] };
@@ -39,9 +45,4 @@ textHandler(bot);
 bot.launch();
 bot.telegram.getMe().then(res => console.log(res));
 console.log("Bot running locally\n");
-notification(bot);
-
-bot.launch();
-bot.telegram.getMe().then(res => console.log(res));
-console.log("Bot running locally\n");
-notification(bot);
+//line that content= notification(bot);
